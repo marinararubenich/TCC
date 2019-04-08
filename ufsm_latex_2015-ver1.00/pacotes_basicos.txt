@@ -1,0 +1,11 @@
+%%%% Pacotes basicos para a classe
+Para um bom funcionamento da classe adicione estes pacotes ao sistema:
+========================================================================
+   texlive-base texlive-lang-portuguese abntex texlive-latex-extra
+========================================================================
+Os pacotes acima possuem varias dependencias!!!! Verifique-as!
+
+Para distribuicoes Debian (ou derivadas)  todos estao disponiveis nos repositorios:
+sudo apt-get install texlive-base texlive-lang-portuguese abntex texlive-latex-extra
+
+
