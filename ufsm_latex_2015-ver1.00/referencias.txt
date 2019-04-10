@@ -1,0 +1,160 @@
+%%%%%%  MEUS %%%%%%%
+
+%%%% Modelo para bibliografia - bibtex!
+
+%%% dissertação de mestrado
+@mastersthesis{diss:cerentini2018,
+  title={Identificação do glaucoma em imagens do fundo olho utilizando aprendizagem profunda},
+  author={Cerentini, Allan},
+  type = {Mestrado em Ciência da Computação},
+  year={2018},
+  school  = {Universidade Federal de Santa Maria},
+    org-short = {UFSM},
+    address = {Santa Maria},
+    pages   = {84},
+    pagename= {f.},
+    Note    = { }
+}
+
+@mastersthesis{diss:dias2014,
+  title={Análise de diferentes métodos de preenchimento de falhas nos fluxos de \ce{CO2}: estimativas sobre o arroz irrigado},
+  author={Dias, Marcelo Bortoluzzi},
+  type = {Mestrado em Meteorologia},
+  year={2014},
+  school  = {Universidade Federal de Santa Maria},
+    org-short = {UFSM},
+    address = {Santa Maria},
+    pages   = {85},
+    pagename= {f.},
+    Note    = { }
+}
+
+@mastersthesis{diss:friedrichs2013,
+  title={Predição da performance de um reator UASB para tratamento de vinhaça usando identificação e redes neuronais},
+  author={Friderichs, André},
+  type = {Mestrado em Engenharia de Processos},
+  year={2013},
+  school  = {Universidade Federal de Santa Maria},
+    org-short = {UFSM},
+    address = {Santa Maria},
+    pages   = {97},
+    pagename= {f.},
+    Note    = { }
+}
+
+
+%%% tese de doutorado
+@phdthesis{tese:pereira2017,
+    Author  = {Tonismar dos Santos Pereira},
+    type    = {Doutorado em Engenharia Agrícola},
+    Title   = {Uso de unteligência artificial para estimativa da capacidade de suporte de carga do solo},
+    Year    = 2017,
+    school  = {Universidade Federal de Santa Maria},
+    org-short = {UFSM},
+    address = {Santa Maria},
+    pages   = {179},
+    pagename= {f.},
+    Note    = { }    
+}
+
+@phdthesis{tese:braga2014,
+    Author  = {Fabiano de Vargas Arigony Braga},
+    type    = {Doutorado em Engenharia Agrícola},
+    Title   = {Estimativa dos parâmetros da resistência do solo ao cisalhamento através de pedotransferência},
+    Year    = 2014,
+    school  = {Universidade Federal de Santa Maria},
+    org-short = {UFSM},
+    address = {Santa Maria},
+    pages   = {98},
+    pagename= {f.},
+    Note    = { }    
+}
+
+@phdthesis{tese:padilha2014,
+    Author  = {Damáris Gonçalves Padilha},
+    type    = {Doutorado em Engenharia Florestal},
+    Title   = {Modelo de apoio à decisão aplicado ao planejamento territorial de sivicultura baseado em análise multicritério de redes neurais artificiais},
+    Year    = 2014,
+    school  = {Universidade Federal de Santa Maria},
+    org-short = {UFSM},
+    address = {Santa Maria},
+    pages   = {98},
+    pagename= {f.},
+    Note    = { }    
+}
+
+@phdthesis{tese:ferraz2013,
+    Author  = {Rafael Camargo Ferraz},
+    type    = {Doutorado em Engenharia Agrícola},
+    Title   = {Sistema web e mobile para estimativa de evapotrabspiração de referência utilizando redes neurais artificiais},
+    Year    = 2013,
+    school  = {Universidade Federal de Santa Maria},
+    org-short = {UFSM},
+    address = {Santa Maria},
+    pages   = {119},
+    pagename= {f.},
+    Note    = { }    
+}
+
+
+%%%% livro
+@book{livro:monticelli2019,
+  title={Guia para classificação de foraminíferos planctônicos recentes},
+  author={Sandro Monticelli PetrÓ},
+  year={2009},
+  address={Porto Alegre},
+  pages={218},
+  publisher={IGEO/UFRGS}
+}
+
+@book{livro:monticelli2018,
+  title={Introdução ao estudo dos foraminíferos},
+  author={Sandro Monticelli PetrÓ},
+  year={2018},
+  address={Porto Alegre},
+  pages={218},
+  publisher={IGEO/UFRGS}
+}
+
+@book{livro:zuurmeestersieno2009,
+  title={A beginner's guide to R},
+  author={Alain F. Zuur and Elena N. Ieno and Erik H. W. G. Meesters},
+  year={2009},
+  address={New York},
+  pages={218},
+  publisher={Springer Science+Business Media}
+}
+
+@book{livro:tafnerxerezfilho1995,
+  title={Redes neurais artificiais: introdução e princípios de neurocomputação},
+  author={Malcon A. Tafner and Marcos de Xerez and Ilson W. Rodrigues Filho},
+  year={1995},
+  address={Blumenau},
+  pages={199},
+  publisher={Editora FURB e Editora Eko}
+}
+
+
+%%%%% capítulo específico (autor da capitulo = autor do livro)
+@inbook{cap:livro:hastietibshiranifriedman2009,
+  title={Neural Networks},
+  booktitle={The elements of statistical learning},
+  author={Trevor Hastie and Robert Tibshirani and Jerome Friedman},
+  chapter={11},
+  pages={389-416},
+  year={2009},
+  address = {New York},
+  publisher={Springer Science+Business Media}
+}
+
+
+%%%%% sites
+@misc{site:ufrgsfora,
+    author="{Petró, Sandro M.; Pivel Maria A. G.; Coimbra, João C.}",
+    Title = {Foraminíferos planctônicos do Quaternário do Atlântico Sul: elaboração de um banco de dados fotográfico, taxonômico, bioestratigráfico e ecológico},
+    subtitle = {Pesquisa},
+    publisher={Porto Alegre},
+    year={2018},
+    url = {https://www.ufrgs.br/microfosseis/microfosseis/foraminiferos/},
+    note={Acesso em 09 abr. 2019}
+}
