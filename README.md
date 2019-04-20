@@ -18,9 +18,8 @@
 Fonte: Autora.
 
 ### Links Úteis:
-* **Alguns Links:**  
-  - [Overleaf](https://www.overleaf.com/project/5ca63172d3a0d471b3c2e45f?ws=fallback)  
-  - [Shiny Apps IO](https://marirubenich.shinyapps.io/Codigos/)  
+* [Overleaf](https://www.overleaf.com/project/5ca63172d3a0d471b3c2e45f?ws=fallback)  
+* [Shiny Apps IO](https://marirubenich.shinyapps.io/Codigos/)  
 
 Ou se preferir, no RStudio digite:
 ```R
