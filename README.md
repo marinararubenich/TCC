@@ -3,7 +3,7 @@
 :heavy_multiplication_x: ***Neste repositório você encontrará todos os arquivos referentes ao meu TCC, que servirá como requisito parcial para obtenção do grau de Bacharela em Sistemas de Informação.***
 
 ## Aplicação de Redes Neurais para estimativa de temperaturas com base em amostras de Foraminíferos  
-**Autora:** Marinara Rübenich Fu,agalli  
+**Autora:** Marinara Rübenich Fumagalli  
 **Orientador:** Joaquim Vinícius Carvalho Assunção  
 
 ### Cronograma de atividades:
