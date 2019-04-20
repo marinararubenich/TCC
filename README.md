@@ -6,15 +6,18 @@
 **Autora:** Marinara Rübenich Fu,agalli  
 **Orientador:** Joaquim Vinícius Carvalho Assunção  
 
-### Cronograma de atividades
+### Cronograma de atividades:
 
 | Atividade | Março | Abril | Maio | Junho | Julho |
-|:----:| :----:|:-----:|:----:|:-----:|:-----:|
+|:----|:----:|:-----:|:----:|:-----:|:-----:|
 | Estudo de materiais relativos ao cenário do trabalho | :black_circle: | :black_circle: |  |  |
 | Implementação |  | :black_circle: | :black_circle: | :black_circle: |  |
 | Testes e ajustes |  |  |  | :black_circle: | :black_circle: |
 | Entrega do TCC |  |  |  |  | :black_circle: |
 
+Fonte: Autora.
+
+### Links Úteis:
 * **Alguns Links:**  
   - [Overleaf](https://www.overleaf.com/project/5ca63172d3a0d471b3c2e45f?ws=fallback)  
   - [Shiny Apps IO](https://marirubenich.shinyapps.io/Codigos/)  
