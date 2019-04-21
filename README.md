@@ -21,7 +21,7 @@ Fonte: Autora.
 :black_large_square: [Overleaf](https://pt.overleaf.com/read/ymghxsfhsbns)  
 :black_large_square: [Shiny Apps IO](https://marirubenich.shinyapps.io/Codigos/)  
 
-  :black_medium_square: Ou se preferir, no [RStudio](https://www.rstudio.com/products/RStudio/) digite a linha abaixo. E tecle `ENTER`:
+  :black_medium_square: Ou se preferir, no terminal do [RStudio](https://www.rstudio.com/products/RStudio/) digite a linha abaixo. E tecle `ENTER`:
 ```R
   shiny::runGitHub('MarinaraRubenichF/TCC', subdir='PREDITOR')
  ```
