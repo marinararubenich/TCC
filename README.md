@@ -18,11 +18,10 @@
 Fonte: Autora.
 
 ### Links Úteis:
-* [Overleaf](https://pt.overleaf.com/read/ymghxsfhsbns)  
-* [Shiny Apps IO](https://marirubenich.shinyapps.io/Codigos/)  
+:black_large_square: [Overleaf](https://pt.overleaf.com/read/ymghxsfhsbns)  
+:black_large_square: [Shiny Apps IO](https://marirubenich.shinyapps.io/Codigos/)  
 
-Ou se preferir, no RStudio digite:
+  :black_medium_square: Ou se preferir, no [RStudio](https://www.rstudio.com/products/RStudio/) digite a linha abaixo. E tecle `ENTER`:
 ```R
   shiny::runGitHub('MarinaraRubenichF/TCC', subdir='PREDITOR')
  ```
- E rode!
