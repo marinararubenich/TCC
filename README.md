@@ -15,7 +15,7 @@
 | Testes e ajustes |  |  |  | :black_circle: | :black_circle: |
 | Entrega do TCC |  |  |  |  | :black_circle: |
 
-Fonte: Autora.
+Fonte: [Autora](https://portal.ufsm.br/projetos/publico/projetos/view.html?idProjeto=63337).
 
 ### Links Úteis:
 :black_large_square: [Overleaf](https://pt.overleaf.com/read/ymghxsfhsbns)  
