@@ -1,4 +1,6 @@
-library(ggplot2)
+library(devtools)
+source_url('https://gist.githubusercontent.com/fawda123/7471137/raw/466c1474d0a505ff044412703516c34f1a4684a5/nnet_plot_update.r')
+library(gsheet)
 library(neuralnet)
 library(rio)
 library(stringr)
@@ -80,11 +82,10 @@ shinyServer(function(input, output){
   #<-------------------------------------------------------------------------------
   
   #------------------------------------------------------------------------------->
-  #Define o botão (e talvez mais coisas) para iniciar
-  output$inicio <- renderUI({
-      #Bot?o para Rodar
-      actionButton("inicio", label= "Criar Rede Neural")
-  }) #Fim output$inicio
+  #Observa se o botão para iniciar foi pressionado e exibe um Modal
+  observeEvent(input$inicio, {
+    shinyalert("Sucesso!", "Agora clique na aba 'PREVISÃO'", type = "success")
+  })
   #<-------------------------------------------------------------------------------
   
   #------------------------------------------------------------------------------->
@@ -93,6 +94,8 @@ shinyServer(function(input, output){
     if(is.null(input$inicio) || input$inicio == 0){
       return(NULL)
     }
+    
+    library(shinyalert)
     #Se o botão iniciar for clicado
     if(input$inicio > 0){
       withProgress(message="Processando o Arquivo!", value=0.1, {
@@ -149,17 +152,20 @@ shinyServer(function(input, output){
         teste <<- dataset[ -index, ];
         
         #Desnormalizando os dados de teste
-        testeDesnorm <- (teste[input$classe]) * (max(dataset[input$classe]) - min(dataset[input$classe])) + min(dataset[input$classe])
+        #testeDesnorm <- (teste) * (max(dataset) - min(dataset)) + min(dataset)
+        #testeCDesnorm <- (teste[, input$classe]) * (max(dataset[, input$classe]) - min(dataset[, input$classe])) + min(dataset[, input$classe])
+        testeCDesnorm <- data.frame(min(dS[, input$classe]) + teste[, input$classe] * (max(dS[, input$classe]) - min(dS[, input$classe])))
+        testeDesnorm <- data.frame(min(dS) + teste * (max(dS) - min(dS)))  
         
         incProgress(0.2, detail ="Criando o Modelo");
         
         #Aplicando a Rede Neural  
         NN = neuralnet(
-                  str_c(input$classe, " ~ ", formula), treino,
-                  algorithm = "rprop+", startweights = NULL,
-                  hidden = c(3, 1), stepmax = 1e+05,
-                  lifesign = "full", threshold = 0.05,
-                );
+                str_c(input$classe, " ~ ", formula), treino,
+                algorithm = "rprop+", startweights = NULL,
+                hidden = c(5, 2), stepmax = 1e+06,
+                lifesign = "none", threshold = 0.01,
+             );
         
         #Progresso do Teste
         incProgress(0.5, detail = "Testando os Dados")
@@ -173,12 +179,6 @@ shinyServer(function(input, output){
         #Desnormalizando os valores obtidos no resultado
         resultadoDesnorm <- data.frame(min(dS[, input$classe]) + previsao$net.result * (max(dS[, input$classe]) - min(dS[, input$classe])))
         
-        results <- data.frame(atual = teste[2, input$classe], predito = previsao$net.result)
-        roundedresults <- sapply(results, round, digits = 0)
-        roundedresultsdf = data.frame(roundedresults)
-        attach(roundedresultsdf)
-        matrizCon <- table(atual, predito)
-        
         #Colocando as predições como uma nova coluna do dataframe
         resultado <- teste[str_c("Previsão")] <<- previsao$net.result
         resultadoDesnorm <- teste[str_c("Previsão Desnormalizada")] <<- resultadoDesnorm
@@ -187,9 +187,9 @@ shinyServer(function(input, output){
         
         hr()
         output$plotLinha <- renderPlot({
-          plot(cbind(round(teste[input$classe], 2), round(previsao$net.result, 2)),
+          plot(cbind(testeCDesnorm, resultadoDesnorm),
                      col = 'red', cex = 2, pch = 18,
-               xlab = 'Valor Real', ylab = 'Valor Predito', xlim = c(0, 1), ylim = c(0, 1))
+               xlab = 'Valor Real', ylab = 'Valor Predito', xlim = c(0, 30), ylim = c(0, 30))
           abline(0, 1, lwd = 2)
         })
         
@@ -198,30 +198,27 @@ shinyServer(function(input, output){
         
         #PLot da Rede Neural
         output$plot <- renderPlot({
-            plot(NN)
+          #pdf("test.pdf")
+          plot.nnet(NN)
+          #dev.off()
         })
           
         #Possibilita fazer o download dos Resultados
         output$visao <- renderUI({
           return(
             div(
-              h4(strong("Erro: "), NN$result.matrix[1,], align = "center"),
+              h4(strong("Erro de Treino (SSE): "), NN$result.matrix[1,], align = "center"),
               #h4(strong("Erro: "), MSE.lm, align = "center"),
-              h4(strong("Etapas: "), NN$result.matrix[3], align = "center"),
-              h4(strong("Limite alcançado: "), NN$result.matrix[2], align = "center"),
-              h4(strong("Erro Médio Quadrático: "), sum((testeDesnorm - resultadoDesnorm)^2)
-                                                         /nrow(teste), align = "center"),
+              h4(strong("Erro de Teste (MSE): "), sum((teste[2, input$classe] - previsao$net.result)^2)/nrow(teste), align = "center"),
+              #sum((testeCDesnorm - resultadoDesnorm)^2)/nrow(testeDesnorm)
+              h4(strong("Número de Iterações: "), NN$result.matrix[3], align = "center"),
               h4(strong("Precisão: "), str_c(precisao,"%"), align = "center"),
               br(),
               hr(),
-              output$matrizC <- renderTable ({
-                h4(strong("Matriz de Confusão: "), align = "center")
-                matrizCon #ajustar
-              }),
+              #output$matrizC <- renderTable ({
+                #h4(strong("Matriz de Confusão: "), align = "center")
+              #}),
               br(),
-              br(),
-              br(),
-              hr(),
               h3(strong("Download:"), align = "center"),
               div(downloadButton('download', 'Download do Resultado'), align = "center"),
               br()
@@ -261,7 +258,7 @@ shinyServer(function(input, output){
       h5("Esta aplicação web foi criada com muita dedicação, como base para o meu Trabalho de Graduação (TG),
       com intuito de que seja útil a todos os que possam se interessar", align = "center"),
       br(),
-      h4(strong("T?tulo do TG: "), align = "center"),
+      h4(strong("Título do TG: "), align = "center"),
       h4("Aplicação de Redes Neurais para estimativa de temperaturas
           com base em amostras de foraminíferos", align = "center"),
       h5(strong("Trabalho de Graduação do Curso de bacharelado em Sistemas de Informação - UFSM"), align = "center"),
@@ -273,6 +270,17 @@ shinyServer(function(input, output){
       br()
     )
   )#Fim do outpu$sobre
+  
+  #Manual
+  #output$exemplo <- renderDataTable(
+    #h3(strong("Download:"), align = "center"),
+    #div(downloadButton('download', 'Download do Resultado'), align = "center"),
+    #br(),
+    #url <- 'https://docs.google.com/spreadsheets/d/1XAlS_JxUCpWjh5InGT-_BjLLCsVj5f5Vus5sWViVZeM/',
+    #a <- gsheet2text(url, format='csv'),
+    #b <- read.csv(a, stringsAsFactors=FALSE),
+    #data.frame(b)
+  #)#Fim do outpu$manual
   
   #Manual
   output$manual <- renderUI(
@@ -290,6 +298,18 @@ shinyServer(function(input, output){
     )
   )#Fim do outpu$resultado
   #FIM da aba AJUDA
+  #<-------------------------------------------------------------------------------
+  
+  #------------------------------------------------------------------------------->
+  #Download do .csv de Exemplo
+  output$downloadData <- downloadHandler(
+    #filename = function(){
+      #paste("exemplo_RNA-fora.csv", ".csv", sep="")
+    #},
+    #content = function(file){
+      #write.csv(a, file)
+    #}
+  ) #Fim do output$DownloadData
   #<-------------------------------------------------------------------------------
   
   #------------------------------------------------------------------------------->

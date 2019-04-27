@@ -1,4 +1,5 @@
 library(shiny)
+library(shinyalert)
 library(shinythemes)
 
 shinyUI(bootstrapPage(theme = shinytheme("sandstone"),
@@ -17,7 +18,9 @@ shinyUI(bootstrapPage(theme = shinytheme("sandstone"),
             uiOutput(outputId = "atributos"),
             conditionalPanel(
               condition = "output.atributos !== null",
-              uiOutput(outputId = "inicio")
+              useShinyalert(),
+              actionButton("inicio", "Criar Rede Neural")
+              #uiOutput(outputId = "inicio")
             )
           ),
           mainPanel(
@@ -46,7 +49,7 @@ shinyUI(bootstrapPage(theme = shinytheme("sandstone"),
           br()
         ),
         tabPanel("Números e Download",
-          h3(strong("Estatísticas: "), align = "center"), uiOutput(outputId = "visao"), renderTable("matrizC"),
+          h3(strong("Estatísticas: "), align = "center"), uiOutput(outputId = "visao"), #renderTable("matrizC"),
           br()          
         )
       ) #Fim do tabsePanel
@@ -60,7 +63,20 @@ shinyUI(bootstrapPage(theme = shinytheme("sandstone"),
       ),
       tabPanel("Resultados",
         uiOutput(outputId = "resultados")
-      )  
+      ),
+      tabPanel("Baixe um Exemplo",
+        div(
+          h4(strong("Baixe seu Exemplo .csv"), align = "center"), 
+          br(),
+          br(),
+          div(actionButton(inputId='ab1', label=" DOWNLOAD", 
+              icon = icon("download", "fa-3x"), 
+              onclick ="window.open('https://drive.google.com/file/d/1AaTtjXj80qGXnbAX1VN6buQn1df7Amc6/view?usp=sharing', '_blank')"),
+              align = "center"
+          )
+          #dataTableOutput("exemplo")
+        )
+      )
     ),
     tabPanel("Contato",
       uiOutput(outputId = "contato")
